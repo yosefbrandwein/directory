@@ -1,0 +1,43 @@
+body{
+    background: url(../images/westernwall.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+body h1{
+    text-align: center;
+    
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#main h1{
+    padding-top: 0;
+}
+
+
+
+#wraper{
+    
+    text-align: center;
+}
+
+#main{
+    
+    margin: auto;
+    display: inline-block;
+    height: auto;
+    padding-top: -50px;
+    
+}
+#myHtml{
+   height: 450px;
+   width: 400px;
+   text-align: center; 
+}
+#perek{
+    
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+}

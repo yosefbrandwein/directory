@@ -1,0 +1,222 @@
+*{
+    box-sizing: border-box;
+  }
+  
+  html, body {
+  min-width: 700px !important;
+  height: 100vh;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    height: 100%;
+    
+  }
+  
+  /* Style the header */
+  header {
+    background-color:  #ffffcc; 
+    text-align: center;
+    font-size: 35px;
+    color: black;
+    height: 200px;
+  }
+  
+  
+  header h3{
+    padding: 70px;
+  }
+  
+  .zaidy,.logo{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%; 
+  }
+  
+  
+  p {
+    margin: 0!important; 
+    
+    z-index: 1;
+  }
+  
+  
+  .main-div {
+    background-image: url('../images/paper-787651.jpg');
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0!important;
+    position: relative;
+    text-align: center;
+  }
+  
+  .row {
+    background-color: #808080;
+    height: 60px;
+  }
+  .nav-row {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+  }
+  
+  .nav-row li {
+    height: 60px;
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+  
+  
+  .nav-row li a {
+    height: 60px;
+    display: block;
+    color: #000;
+    padding-top: 16px; 
+    padding-bottom: 14px;
+    padding-right: 16px;
+    padding-left: 16px;
+    text-decoration: none;
+    text-align: center;
+  }
+  .nav-row li a:hover {
+    background-color: #555;
+    color: white;
+  }
+  
+  .has-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%; 
+    z-index: 4;
+  }
+  
+  .dropdown li {
+    background-color: #808080;
+    border-bottom:  1px solid #bbb;
+    
+  }
+  
+  
+  .dropdown li a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    
+  }
+  .dropdown li a:hover {
+    background-color: #555;
+    color: white;
+  }
+  
+  .has-dropdown:hover .dropdown {
+    display: block;
+  }
+  
+  #form-add {
+    display: none;
+    
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center; 
+    z-index: 2;
+  }
+  
+  
+  .form1 {
+    margin-top:1em;
+    display: inline-block;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+    width: 250px;
+  }
+  #form-search {
+    display: none;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+  }
+  
+  .form2 {
+    margin-top:1em;
+    display: inline-block;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+    width: 250px;
+  }
+  
+  .city {
+    width: 110px;
+    margin-right: 10px;
+  }
+  .state {
+    width: 15px;
+  }
+  .zip {
+    width: 70px;
+    margin-left: 10px;
+  }
+  label {
+    float: left;
+  }
+  input {
+    width:100%;
+  }
+  
+  .one-line {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    width: 120px;
+    height: 30px;
+    margin-top: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover,
+  input[type="submit"]:focus {
+    outline   : none;
+    background: red;
+    color   : #FFF;
+  }
+  
+  .frame {
+   padding: 1em;
+  }
+  
+  /* Style the footer */
+  footer {
+    height: 40px;
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+  }
+  

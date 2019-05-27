@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds225608.mlab.com:25608/heroku_jk4xm9dn',{ useNewUrlParser: true})
+mongoose.connect('mongodb://yosefbrandwein:ydb1522#4b@ds225608.mlab.com:25608/heroku_jk4xm9dn',{ useNewUrlParser: true})
      .then( () => console.log('connected to MongoDb...'))
      .catch( (e)=> console.error('Could not connect to MongoDb...', e))
 

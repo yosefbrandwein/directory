@@ -1,6 +1,6 @@
 *{
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
   
   html, body {
   min-width: 700px !important;
@@ -189,7 +189,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   
-  input[type="submit"] {
+  input[id="submit"] {
     background-color: #4CAF50;
     color: white;
     width: 120px;
@@ -200,8 +200,8 @@
     cursor: pointer;
   }
   
-  input[type="submit"]:hover,
-  input[type="submit"]:focus {
+  input[id="submit"]:hover,
+  input[id="submit"]:focus {
     outline   : none;
     background: red;
     color   : #FFF;

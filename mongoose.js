@@ -12,7 +12,7 @@ const directorySchema = new mongoose.Schema({
     address: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
-    zip: Number,
+    zip: String,
     country: {type: String, default: 'USA'},
     phone: Number,
     generation: Number,

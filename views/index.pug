@@ -1,17 +1,17 @@
 mixin label(address)
-    span.label
+    span.labels
         .name= address.firstName+' '+address.lastName
         .address= address.address
-        .city= address.city+' '+address.state+' '+address.zip
+        .region= address.city+' '+address.state+' '+address.zip
 
 html
     head
-       title hello
+       title Directory
        script.
           var directory = #{directory}
 
        style.
-            .label {
+            .labels {
                 font-family: sans-serf;
                 font-size: 1.3em;
                 line-height: 1.3;
@@ -22,6 +22,7 @@ html
                 text-align: center;
             }
     body
+        include head.html 
         each n in directory
             +label(n)
         

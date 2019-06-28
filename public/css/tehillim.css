@@ -2,8 +2,9 @@ body{
     background: url(../images/westernwall.png);
     background-repeat: no-repeat;
     background-size: cover;
-    
+    font-family: unset;
 }
+
 body h1{
     text-align: center;
     

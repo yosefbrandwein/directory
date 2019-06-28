@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/main.css">
 <script type="text/javascript">
-  
+  //controlling visbility of forms
   function toggle_visibility(id1,id2) {
     var f = document.getElementById(id1);
     var s = document.getElementById(id2);
@@ -15,7 +15,30 @@
       f.style.display = 'none';
     else
       f.style.display = 'block';
-  }   
+  } 
+  /*
+  //Hide form when user clicks outside it
+  window.onload = function(){
+    var formSearch = document.getElementById('form-search');
+    var formAdd = document.getElementById('form-add');
+    document.onclick = function(e){
+       if(e.target.id !== 'form-search' && e.target.id !== 'form-add' && e.target.id !== 'dropdown'){
+          formSearch.style.display = 'none';
+          formAdd.style.display = 'none';
+       }
+    };
+ };
+  */
+  //submiting form
+  function submitForm() {
+    const first = document.getElementById("fnSearch").value;
+    const last = document.getElementById("lnSearch").value;
+    if (first==='' && last==='')
+      alert("Enter first name or last name");
+    else
+      document.searchForm.submit();
+  }
+  
   </script>
 
 </head>
@@ -35,9 +58,9 @@
   <li class="active"><a href="#">HOME</a></li>
   <li><a href="../tehillim">DAILY TEHILLIM</a></li>
   <li><a href="../calendar">CALENDAR</a></li>
-  <li><a href="#">GALLERY</a></li>
+  <!--<li><a href="#">GALLERY</a></li>-->
   <li class="has-dropdown"><a href="#">DIRECTORY</a>
-    <ul class="dropdown">            
+    <ul class="dropdown" id="dropdown">            
       <li class="directory"><a href="../directory">Family Directory</a></li>
       <li class="search-by=name"><a href="#" onclick="toggle_visibility('form-search','form-add');">Search by name</a></li>
       <li class= "post"><a href="#" onclick="toggle_visibility('form-add','form-search');" >Add Member to Directory</a></li>       
@@ -91,21 +114,21 @@
         <label for="email">E-Mail</label>
         <input id="email" type="email" name="email" ><br>
       </div>
-      <input type="submit"  value="Submit">
+      <input type="submit" id="submit" value="Submit">
     </form>  
   </div>
 </div>
 <div id="form-search">
   <div class="form2">
-    <H3>SEARCH</H3>
-    <form id="searchForm" action="../directory/search" method="get">
+    <H3>Enter first or last name</H3>
+    <form id="searchForm" name="searchForm" action="../directory/search" method="get">
       First name:<br>
-      <input type="text" name="firstName" required >
+      <input type="text" name="firstName" id="fnSearch">
       <br>
       Last name:<br>
-      <input type="text" name="lastName" required >
+      <input type="text" name="lastName" id="lnSearch">
       <br><br>
-      <input type="submit"  value="Submit">
+      <input type="button" id="submit" value="Submit" onclick="submitForm()" >
     </form> 
   </div>
 </div>  

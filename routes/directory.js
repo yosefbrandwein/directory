@@ -23,15 +23,27 @@ router.get('/', async (req, res) => {
 //route to specific address 
 router.get('/search',async (req, res) => {
   
-  const first= req.query.firstName.toUpperCase();
-  const last = req.query.lastName.toUpperCase();
+ 
+   const first= (req.query.firstName) ? req.query.firstName.toUpperCase() : null;
+   const last = (req.query.lastName) ? req.query.lastName.toUpperCase() : null;
+   let address;
   try {
-    const address = await Directory
+    if (first!==null && last!==null) {
+       address = await Directory
       .find({firstName: first, lastName: last})
+      .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1 });  
+    }
+    
+    else {
+       address = await Directory
+      .find({ $or:[
+          {firstName : new RegExp(first)},{ lastName: new RegExp(last)} 
+        ]})
       .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1 });
+      }
 
     if (address.length===0)
-      res.status(404).send('Sorry no such family member');
+      res.status(404).render('response',{message:'Sorry no such family member'});
     else{
       res.render('index',{directory: address});
     }
@@ -59,6 +71,7 @@ router.update('/:id', function (req, res) {
 
 router.post('/newmember',async function (req, res) {
   try {
+  
   const first= req.body.firstName.toUpperCase();
   const last = req.body.lastName.toUpperCase();
 
@@ -68,7 +81,8 @@ router.post('/newmember',async function (req, res) {
 
   const member= check.find( m => m.firstName===first && m.lastName===last);
   if (member) 
-    return  res.send(`${first} ${last} alredy exist in directory`);  
+    
+    return res.render('response',{message: `${first} ${last} alredy exist in directory`});  
       
   async function createMember () {
   
@@ -87,7 +101,7 @@ router.post('/newmember',async function (req, res) {
     });
     
     const result = await member.save();
-    res.send(`${result.firstName} was sucesfully added to the directory.`);
+    res.render('response',{message:`${result.firstName} was successfully added to the directory.`});
   }
   createMember();
   } 

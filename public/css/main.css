@@ -189,7 +189,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   
-  input[id="submit"] {
+  input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     width: 120px;
@@ -200,8 +200,8 @@
     cursor: pointer;
   }
   
-  input[id="submit"]:hover,
-  input[id="submit"]:focus {
+  input[type="submit"]:hover,
+  input[type="submit"]:focus {
     outline   : none;
     background: red;
     color   : #FFF;

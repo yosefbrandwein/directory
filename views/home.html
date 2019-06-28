@@ -30,13 +30,13 @@
  };
   */
   //submiting form
-  function submitForm() {
-    const first = document.getElementById("fnSearch").value;
-    const last = document.getElementById("lnSearch").value;
-    if (first==='' && last==='')
+  function validate() {
+    
+    if ( document.searchForm.firstName.value == ""&&  document.searchForm.lastName.value == "") {
       alert("Enter first name or last name");
-    else
-      document.searchForm.submit();
+        return false;
+    } else 
+        return true;
   }
   
   </script>
@@ -114,21 +114,21 @@
         <label for="email">E-Mail</label>
         <input id="email" type="email" name="email" ><br>
       </div>
-      <input type="submit" id="submit" value="Submit">
+      <input type="submit"  value="Submit">
     </form>  
   </div>
 </div>
 <div id="form-search">
   <div class="form2">
     <H3>Enter first or last name</H3>
-    <form id="searchForm" name="searchForm" action="../directory/search" method="get">
+    <form  name="searchForm" action="../directory/search" method="get" onsubmit = "return(validate());">
       First name:<br>
-      <input type="text" name="firstName" id="fnSearch">
+      <input type="text" name="firstName" >
       <br>
       Last name:<br>
-      <input type="text" name="lastName" id="lnSearch">
+      <input type="text" name="lastName" >
       <br><br>
-      <input type="button" id="submit" value="Submit" onclick="submitForm()" >
+      <input type="submit"  value="Submit"  >
     </form> 
   </div>
 </div>  

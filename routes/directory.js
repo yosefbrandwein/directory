@@ -30,14 +30,14 @@ router.get('/search',async (req, res) => {
   try {
     if (first!==null && last!==null) {
        address = await Directory
-      .find({firstName: first, lastName: last})
+      .find({firstName: new RegExp('^'+first), lastName: new RegExp('^'+last)})
       .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1 });  
     }
     
     else {
        address = await Directory
       .find({ $or:[
-          {firstName : new RegExp(first)},{ lastName: new RegExp(last)} 
+          {firstName : new RegExp('^'+first)},{ lastName: new RegExp('^'+last)} 
         ]})
       .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1 });
       }

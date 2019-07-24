@@ -1,0 +1,64 @@
+extends layout.pug
+
+block content
+    script.
+      var type=#{type}
+      
+    style.
+        .container {
+            text-align: center;
+        }
+        .form {
+            margin-top:1em;
+            display: inline-block;
+            background-color: #f2f2f2;
+            padding: 5px;
+            border-radius: 5px;
+            width: 250px;
+        } 
+        .messages {
+            background-color: rgba(255, 0, 0, 0.2);
+            border: solid 1px red;
+            color: red;
+            font-size: 1em;
+            margin: 1%;
+        }
+    
+    -if (locals.error && locals.error.length>0)
+        .messages     
+            p #{locals.error}
+    -if (locals.messages && locals.messages.length>0)
+        .messages     
+            p #{locals.messages}
+    
+        
+    .container
+        if type==='register'
+            h1='Register'
+            form(class='form', action='../users/register', method='POST')
+                p
+                |Name: 
+                input(type='text', name='Name', value=(locals.name) ? locals._name[0]: '', required)
+                |Email: 
+                input(type='text', name='Email', value=(locals.email) ? locals.email[0]: '', required)
+                |Password: 
+                input(type='text', name='Password_1', value='', required)
+                |Comfirm Password: 
+                input(type='text', name='Password_2', value='', required)
+                input(type='submit', value='Submit')
+
+            p 
+                ='Have an account?'
+                a(href='../users/login') Login
+
+        else if type==='login'
+            h1='Login'
+            form(class='form', action='../users/login', method='POST')
+                |Email: 
+                input(type='text', name='email', value='', required)
+                |Password: 
+                input(type='text', name='password', value='',required)
+                input(type='submit', value='Submit', )
+            p 
+                ='No account?'
+                a(href='../users/register') Register

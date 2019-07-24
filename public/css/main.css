@@ -37,7 +37,6 @@
   
   p {
     margin: 0!important; 
-    
     z-index: 1;
   }
   
@@ -58,6 +57,7 @@
     height: 60px;
   }
   .nav-row {
+    float: left;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -68,7 +68,30 @@
     height: 60px;
     float: left;
     border-right: 1px solid #bbb;
+    width: 150px;
   }
+  .row p {
+    float: right;
+    font-size:1.1em;
+    color: red;
+    padding: 1em;
+    margin: 0.9em;
+  }
+
+  .row input {
+    padding: 6px;
+    border-radius: 8px;
+    color:#fff;
+    background-color:#7FFF00;
+    font-size:1.1em;
+    border:0;
+    cursor:pointer;
+    margin: 0.9em;
+    width: 150px;
+    float: right;
+    
+  }
+
   
   
   .nav-row li a {
@@ -105,7 +128,7 @@
   .dropdown li {
     background-color: #808080;
     border-bottom:  1px solid #bbb;
-    
+    width: 100%;
   }
   
   
@@ -171,7 +194,7 @@
     margin-right: 10px;
   }
   .state {
-    width: 15px;
+    width: 35px;
   }
   .zip {
     width: 70px;
@@ -205,6 +228,10 @@
     outline   : none;
     background: red;
     color   : #FFF;
+  }
+
+  .centerDiv {
+    min-height: 80%;
   }
   
   .frame {

@@ -5,33 +5,34 @@ const Directory=require('../mongoose.js')
 
 //route to address book 
 router.get('/', async (req, res) => {
-  
-  try {
-    const addresses = await Directory
-    .find()
-    .sort({ lastName: 1 })
-    .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1});
-            
-    res.render('index',{directory: addresses});
-  } catch (error) {
-    console.log('error', error.message);
+  if (!req.app.locals.name)
+        res.redirect('/');
+  else {
+    try {
+      const addresses = await Directory
+      .find()
+      .sort({ lastName: 1 })
+      .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1});
+              
+      res.render('index',{directory: addresses});
+    } catch (error) {
+      console.log('error', error.message);
+    }
   }
-  
 });
 
 
 //route to specific address 
 router.get('/search',async (req, res) => {
   
- 
    const first= (req.query.firstName) ? req.query.firstName.toUpperCase() : null;
    const last = (req.query.lastName) ? req.query.lastName.toUpperCase() : null;
    let address;
   try {
     if (first!==null && last!==null) {
        address = await Directory
-      .find({firstName: new RegExp('^'+first), lastName: new RegExp('^'+last)})
-      .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1 });  
+       .find({firstName: new RegExp('^'+first), lastName: new RegExp('^'+last)})
+       .select({firstName: 1, lastName: 1, address: 1, city: 1, state: 1, zip: 1 });  
     }
     
     else {
@@ -71,45 +72,41 @@ router.update('/:id', function (req, res) {
 
 router.post('/newmember',async function (req, res) {
   try {
-  
-  const first= req.body.firstName.toUpperCase();
-  const last = req.body.lastName.toUpperCase();
+    const first= req.body.firstName.toUpperCase();
+    const last = req.body.lastName.toUpperCase();
 
-  const check = await Directory
-    .find()
-    .select({firstName: 1, lastName: 1});
+    const check = await Directory
+      .find()
+      .select({firstName: 1, lastName: 1});
 
-  const member= check.find( m => m.firstName===first && m.lastName===last);
-  if (member) 
-    
-    return res.render('response',{message: `${first} ${last} alredy exist in directory`});  
+    const member= check.find( m => m.firstName===first && m.lastName===last);
+    if (member) 
+      return res.render('response',{message: `${first} ${last} alredy exist in directory`});  
+        
+    async function createMember () {
+      const member =  new Directory({
+        firstName: req.body.firstName.toUpperCase(),
+        lastName: req.body.lastName.toUpperCase(),
+        address: req.body.address.toUpperCase(),
+        city: req.body.city.toUpperCase(),
+        state: req.body.state.toUpperCase(),
+        zip: req.body.zip,
+        country: req.body.country,
+        phone: req.body.phone,
+        generation: req.body.generation,
+        familyId: req.body.familyId,
+        status: req.body.status
+      });
       
-  async function createMember () {
-  
-    const member =  new Directory({
-      firstName: req.body.firstName.toUpperCase(),
-      lastName: req.body.lastName.toUpperCase(),
-      address: req.body.address.toUpperCase(),
-      city: req.body.city.toUpperCase(),
-      state: req.body.state.toUpperCase(),
-      zip: req.body.zip,
-      country: req.body.country,
-      phone: req.body.phone,
-      generation: req.body.generation,
-      familyId: req.body.familyId,
-      status: req.body.status
-    });
-    
-    const result = await member.save();
-    res.render('response',{message:`${result.firstName} was successfully added to the directory.`});
-  }
-  createMember();
+      const result = await member.save();
+      res.render('response',{message:`${result.firstName} was successfully added to the directory.`});
+    }
+    createMember();
   } 
   catch (e) {
-    console.log('Error', e.message);
+    console.log('Error', e);
   }
       
 });
-
 
 module.exports=router;

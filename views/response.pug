@@ -1,5 +1,11 @@
-html
-    head
-    body
-        include head.html
+extends layout.pug
+
+block content
+    style.
+        .response {
+            border: solid 2px Tomato;
+            font-size: 1em;
+            margin: 5%;
+        }
+    .response
         h1 #{message}

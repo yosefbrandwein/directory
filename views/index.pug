@@ -1,28 +1,27 @@
-mixin label(address)
-    span.labels
-        .name= address.firstName+' '+address.lastName
-        .address= address.address
-        .region= address.city+' '+address.state+' '+address.zip
+extends layout.pug
 
-html
-    head
-       title Directory
-       script.
-          var directory = #{directory}
+block content
+    mixin label(address)
+        span.labels
+            .name= address.firstName+' '+address.lastName
+            .address= address.address
+            .region= address.city+' '+address.state+' '+address.zip
 
-       style.
-            .labels {
-                font-family: sans-serf;
-                font-size: 1em;
-                line-height: 1.3;
-                padding: 10px;
-                border: 1 px solid #555;
-                width: 300px;
-                float: left;
-                text-align: center;
-            }
-    body
-        include head.html 
-        each n in directory
-            +label(n)
+    script.
+        var directory = #{directory}
+
+    style.
+        .labels {
+            font-family: sans-serf;
+            font-size: 1em;
+            line-height: 1.3;
+            padding: 10px;
+            border: 1 px solid #555;
+            width: 300px;
+            float: left;
+            text-align: center;
+        }
+     
+    each n in directory
+        +label(n)
         

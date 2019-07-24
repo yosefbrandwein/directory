@@ -1,0 +1,140 @@
+html
+    head
+        script.
+            function validate() {
+                if ( document.searchForm.firstName.value == ""&&  document.searchForm.lastName.value == "") {
+                    alert("Enter first name or last name")
+                    return false;
+                } else 
+                    return true;
+            } 
+        title The Brandwein's
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/main.css")
+        link
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400i")        
+    body
+        header
+            span
+                img(src="/images/zeidyyd.jpg", alt="Zaidy r' Yosef D" class="logo" style="float:left")
+                img(src="/images/zeidy.png", alt="Zaidy r' Avrahom" class="zaidy" style="float:right")
+                h3(style="text-align:center; margin:0") BRANDWEIN FAMILY
+        div.navagation
+            nav
+                section.row
+                    ul.nav-row
+                        li.active
+                            a(href="/") Home
+                        li
+                            a(href="../tehillim") Daily Tehillim
+                        li
+                            a(href="../calendar") Calendar
+                        li.has-dropdown 
+                            a(href="#") Directory
+                            ul.dropdown#dropdown
+                                li.directory
+                                    - if (locals.name)                                 
+                                        a(href="../directory" ) Family Directory
+                                    -else
+                                        a(href="#" onclick='alerts()') Family Directory
+                                        script.
+                                            function alerts() {
+                                                alert("You must be loged in to access the Directory");
+                                            }
+                                li.search-by-name
+                                    a(href="#" onclick="toggle_visibility('form-search','form-add')") Search By Name
+                                li.post
+                                    a(href="#" onclick="toggle_visibility('form-add','form-search')") Add Member to Directory
+                                script.
+                                    function toggle_visibility(id1,id2) {
+                                        if (#{!locals.name})
+                                            alert("You must be loged in to access the Directory");
+                                        else                                  
+                                            var f = document.getElementById(id1);
+                                            var s = document.getElementById(id2);
+                                        if(f.style.display == 'block'|| s.style.display =='block') 
+                                            f.style.display = 'none';
+                                        else
+                                            f.style.display = 'block';
+                                    }
+                                    
+                    a(href=(!locals.name) ? "../users/login" : "../users/logout")
+                        input(type="button",value=(locals.name) ? 'Log out' : 'Log in' )
+                    -if (locals.name)
+                        p.
+                            Hi! #{locals.name}               
+                  
+        div#form-add
+            div.form1
+                h3='WELCOME'
+                form#addForm(action="../directory/newmember", method="post")
+                    .first-name
+                        label(for="first-name") First Name
+                        input#first-name(type="text" name="firstName" required)
+                        br
+                    .last-name
+                        label(for="last-name") Last Name
+                        input#last-name(type="text" name="lastName" required)
+                        br
+                    .address
+                        label(for="address") Address
+                        input#address(type="text" name="address" required)
+                        br
+                    .one-line
+                        .city
+                            label(for="city") City
+                            input#city(type="text" name="city" required)
+                            br
+                        .state
+                            label(for="state") State
+                            input#state(type="text" name="state" required)
+                            br
+                        .zip
+                            label(for="zip") Zip
+                            input#last-name(type="text" name="zip" required)
+                            br
+                    .Phone
+                        label(for="phone") Phone
+                        input#phone(type="text" name="phone" )
+                        br
+                    .email
+                        label(for="email") E-Mail
+                        input#email(type="text" name="email" )
+                        br
+                    input(type="submit", value="Submit")
+            
+        div#form-search
+            div.form2
+                h3 Enter first or last name
+                form(name="searchForm" action="../directory/search", method="get" onsubmit="return (validate())")
+                    |   First name:
+                    br
+                    input(type="text" name="firstName" value="" )
+                    br
+                    |   Last name:
+                    br
+                    input(type="text" name="lastName" value="" )
+                    br
+                    input(type="submit", value="Submit")
+            
+        .centerDiv
+            block content
+                style.
+                    .message {
+                        background-color: rgb(234, 228, 110);
+                        border: solid 1px rgb(201, 174, 62);
+                        color: green;
+                        font-size: 1em;
+                        margin: 1%;
+                    }
+                -if (locals.messages && locals.messages.length>0)
+                    .message     
+                        p #{locals.messages}
+                .main-div
+                    .frame
+                        iframe(src="esther.pdf"  width="800px" height="900px")
+        footer
+            |For comments send email to: 
+            a(href="mailto:yoselbrand@gmail.com") Yoselbrand@gmail.com
+            script(src="/home.js")

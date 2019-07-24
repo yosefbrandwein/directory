@@ -38,7 +38,7 @@ block content
             form(class='form', action='../users/register', method='POST')
                 p
                 |Name: 
-                input(type='text', name='Name', value=(locals.name) ? locals._name[0]: '', required)
+                input(type='text', name='Name', value=(locals._name) ? locals._name[0]: '', required)
                 |Email: 
                 input(type='text', name='Email', value=(locals.email) ? locals.email[0]: '', required)
                 |Password: 

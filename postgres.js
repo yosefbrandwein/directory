@@ -1,5 +1,5 @@
 const {Pool} = require('pg');
-//require('./config/.env')
+
     //Starting up cleint with config
     const pool = new Pool({
         connectionString: DATABASE_URL,

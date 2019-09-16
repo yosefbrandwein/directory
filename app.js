@@ -8,7 +8,6 @@ const session = require('express-session');
 const mongoStore = require('connect-mongo')(session);
 const app = express();
 require('./prod.js')(app);
-require('./config/.env');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true }));
@@ -17,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: true }));
 //creating session, cookie
 app.use(session({
     store: new mongoStore({
-      url:  MONGODB_URI
+      url:  MONGODB_URI || require('./config/.env').MONGODB_URI
     }),
     secret: 'lelov',
     cookie: {

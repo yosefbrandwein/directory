@@ -8,7 +8,7 @@ const session = require('express-session');
 const mongoStore = require('connect-mongo')(session);
 const app = express();
 require('./prod.js')(app);
-//require('./config/.env');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true }));
 

@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: true }));
 //creating session, cookie
 app.use(session({
     store: new mongoStore({
-      url:  MONGODB_URI 
+      url:  process.env.MONGODB_URI 
     }),
     secret: 'lelov',
     cookie: {

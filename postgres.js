@@ -2,7 +2,7 @@ const {Pool} = require('pg');
 
     //Starting up cleint with config
     const pool = new Pool({
-        connectionString: DATABASE_URL,
+        connectionString: process.env.DATABASE_URL,
         ssl: true
     });
     //connecting client
